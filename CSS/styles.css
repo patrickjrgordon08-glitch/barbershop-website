@@ -1,0 +1,70 @@
+/* ===================================
+Vintage Backgroundshop Theme
+File: CSS/styles.css
+==================================== */
+/* ----- CSS Variables (Vintage Palette) ---- */
+:root {
+--color-bg-primary: #F4EFEA; /* Cream */
+--color-bg-dark: #3a2d28; /* dark Brown */
+--color-accent: #b22222; /* Barber red */
+--color-text-dark: #1f1f1f; /* deep Brown/black */
+--color-biege: #d8c3a5; /*Biege */
+--color-text-light: #ffffff; /* White */
+--radius: 14px;
+--shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+--max-width: 1100px;
+}
+/* ---- Base Reset ---- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth
+}
+body {
+    font-family:arial, Helvvetica, sans-serif;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+}
+/* ---- Layout Helpers ---- */
+.container {
+   width:92%;
+   max-width: var(--max-width);
+   margin: 0 auto; 
+}
+/* ---- Header / Navbar ---- */
+.site-header {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    gap: 16px;
+}
+.logo {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+.nav {
+    display: flex; 
+    gap: 18px;
+}
+.nav-link {
+    color: var(--color-biege);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 9px 10px;
+    border-radius: 10px;
+}
