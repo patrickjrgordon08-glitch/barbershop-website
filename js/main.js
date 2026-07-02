@@ -3,19 +3,19 @@
 // Vintage Barbershop Project
 // =====================
 // ----- DOM Element -----
-const yearE1 = document.getElementById("year");
-const menuBtn = document.getElementById("menuBtn")
+const yearEl = document.getElementById("year");
+const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
-const ctaBtn = document.getElementById=("ctaBtn");
+const ctaBtn = document.getElementById("ctaBtn");
 const callBtn = document.getElementById("callBtn");
-const phoneLink = document.getElementByid("phoneLink");
-const heading = document.getElementById("heading");
+const phoneLink = document.getElementById("phoneLink");
+const heading = document.getElementById("heroHeading");
 
 // ----- helpers / Functions -----
-//UpdATE FOOTER YEAR AUTOMATICALLY
+//UPDATE FOOTER YEAR AUTOMATICALLY
 const setCurrentYear = () => {
     const now = new Date();
-    yearE1.textContent = now.getFullYear();
+    yearEl.textContent = now.getFullYear();
 };
 
 //Toggle mobile menu open/close
@@ -59,7 +59,7 @@ if (menuBtn) {
 if (mobileMenu) {
     mobileMenu.addEventListener("click", (event) => {
        // if they clicked an <a> inside the menu, close it 
-       if (event,target,tagName === "A") {
+       if (event.target.tagName === "A") {
         closeMobileMenu();
        }
     });
@@ -67,20 +67,20 @@ if (mobileMenu) {
 
 //4) CTA Button: "Book Now" (placeholder behavior)
 if (ctaBtn) {
-ctaBtn,addEventListener("click", () => {
+ctaBtn.addEventListener("click", () => {
     updateHeadingText("Booking Coming Next - Great Choice!");
 });
 }
 
 // 5) Call Button: try to use the phone number in the footer
 if (callBtn) {
-    callBtn.addEventListener ("click", () => {
+    callBtn.addEventListener("click", () => {
         //If you later set phonelink href to tel: this will work perfectly.
         //for now, this is a beginner- friemdly placeholder.
         if (phoneLink) {
             updateHeadingText("call us at" + phoneLink.textContent);
         } else {
-                updateHeadingText("Call Feature Coming Soon")
+                updateHeadingText("Call Feature Coming Soon");
             }
         });
     }
