@@ -10,6 +10,59 @@ const ctaBtn = document.getElementById("ctaBtn");
 const callBtn = document.getElementById("callBtn");
 const phoneLink = document.getElementById("phoneLink");
 const heading = document.getElementById("heroHeading");
+const featureGrid = document.getElementById("featureGrid");
+
+// -------  Sevices Data (Array of Objects) --------
+
+const services = [
+    {
+    title: "Classic Haircuts", 
+    text: "Timeless cuts with mordern precisiontailired to your style.",
+    image: "assets/images/feature-1.jpg"
+},
+{
+    title: "Beard Trim",
+    text: "Sharp and line-up your beard for a clean, sharp finish.",
+    image: "assets/images/feature-2.jpg",
+},
+    {title: "straight Razor Shave",
+    text: "Hot towel treatment with a smooth traditional shave.",
+    image: "assets/images/feature-3.jpg"
+},
+];
+
+// ---- Render Features Using forEach ------
+//     const renderFeatures = () => {
+//     if (!featureGrid) return;
+
+//     services.forEach(service => {
+//         const card = document.createElement("article");
+//         card.classList.add("feature-card");
+
+//         card.innerHTML = `
+//         <img src="${service.image}" alt="${service.title}" class="feature-img" />
+//         <h3 class="feature-title">${service.title}</h3
+//         <p class="feature-text">${service.text}</p>
+//         `;
+
+//         featureGrid.appendChild(card);
+//     });
+// };
+
+// ------ Render features using Maps -------
+const renderFeaturesMap = () => {
+    const cardsHTML = services.map(service => {
+        return `
+        <article class="feature-card">
+        <img src="${service.image}" alt=${service.title}" class="feature-img"/>
+        <h3 class="feature-title">${service.title}</h3>
+        <p class="feature-text">${service.text}</p>
+        </article>
+        `;
+    }).join("");
+
+    featureGrid.innerHTML = cardsHTML;
+};
 
 // ----- helpers / Functions -----
 //UPDATE FOOTER YEAR AUTOMATICALLY
@@ -48,6 +101,8 @@ const updateHeadingText = (newText) => {
 
 // 1) Set year on page load
 setCurrentYear();
+// renderFeatures();
+renderFeaturesMap();
 // 2) Hambuger menu toggle
 if (menuBtn) {
     menuBtn.addEventListener("click", () => {
