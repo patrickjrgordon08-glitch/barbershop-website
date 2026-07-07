@@ -11,6 +11,8 @@ const callBtn = document.getElementById("callBtn");
 const phoneLink = document.getElementById("phoneLink");
 const heading = document.getElementById("heroHeading");
 const featureGrid = document.getElementById("featureGrid");
+const nav = document.getElementById("nav");
+const siteHeader = document.querySelector(".site-header");
 
 // -------  Sevices Data (Array of Objects) --------
 
@@ -30,6 +32,45 @@ const services = [
     image: "assets/images/feature-3.jpg"
 },
 ];
+
+const navLinks = [
+    {label: "Home", href:"#hero"},
+    {label: "Services", href: "#features"},
+    {label: "Book", href: "#cta"},
+    {label: "Contact", href: "#footer"}
+];
+
+
+// --- render Navigation using map methods
+const renderNavigation = () => {
+    //Deskstop Nav
+    if (nav) {
+        const navHTML = navLinks.map(link => {
+            return `
+            <a href="${link.href}" class="nav-link">
+            ${link.label}
+            </a>
+            `;
+        }).join("");
+        nav.innerHTML = navHTML;
+    };
+
+    //Mobile Nav
+if (mobileMenu) {
+    const mobileHTML = navLinks.map(link => {
+    return `
+    <a href="${link.href}" class="mobile-link">
+    ${link.label}
+    </a>
+    `;
+
+    }).join("");
+
+    mobileMenu.innerHTML = mobileHTML
+};
+};
+
+
 
 // ---- Render Features Using forEach ------
 //     const renderFeatures = () => {
@@ -71,6 +112,16 @@ const setCurrentYear = () => {
     yearEl.textContent = now.getFullYear();
 };
 
+const handleHeaderOnScroll = () => {
+    if(!siteHeader) return;
+
+    if(window.scrollY >10) {
+        siteHeader.classList.add("is-scrolled")
+    } else {
+        siteHeader.classList.remove("is scrolled");
+    }
+};
+
 //Toggle mobile menu open/close
 let isMenuOpen = false;
 const toggleMobileMenu = () => {
@@ -103,6 +154,9 @@ const updateHeadingText = (newText) => {
 setCurrentYear();
 // renderFeatures();
 renderFeaturesMap();
+renderNavigation();
+handleHeaderOnScroll();
+// Run once on page load incase user refreshes mid-scroll
 // 2) Hambuger menu toggle
 if (menuBtn) {
     menuBtn.addEventListener("click", () => {
