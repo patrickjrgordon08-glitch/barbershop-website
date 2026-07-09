@@ -14,24 +14,129 @@ const featureGrid = document.getElementById("featureGrid");
 const nav = document.getElementById("nav");
 const siteHeader = document.querySelector(".site-header");
 
-// -------  Sevices Data (Array of Objects) --------
 
+// ----- Modal Elements ----
+const serviceModal = document.getElementById("serviceModal");
+const serviceModalOverlay = document.getElementById("serviceModalOverlay");
+const serviceModalClose = document.getElementById("serviceModalClose");
+const serviceModalTitle = document.getElementById("serviceTitle");
+const serviceModalList = document.getElementById("serviceModalList");
+
+// ---- Services Data (array of Objects) -----
 const services = [
     {
-    title: "Classic Haircuts", 
-    text: "Timeless cuts with mordern precisiontailired to your style.",
-    image: "assets/images/feature-1.jpg"
-},
-{
-    title: "Beard Trim",
-    text: "Sharp and line-up your beard for a clean, sharp finish.",
-    image: "assets/images/feature-2.jpg",
-},
-    {title: "straight Razor Shave",
-    text: "Hot towel treatment with a smooth traditional shave.",
-    image: "assets/images/feature-3.jpg"
-},
+        id: 1,
+        title: "classic haircuts",
+        image: "assets/images/feature-1.jpg",
+        alt: "Classice Haircuts",
+        description:"Timeless cuts with modern precision-tailores to your style.",
+        price:25,popular: true,
+        detals: [
+            "Consultation woith your barber before cut begins.",
+            "Hair sectioning and shape-up based on your preferred style.",
+            "Profesional clippers, trimmers, and share used for precision.",
+            "Hairline cleanup and finishing touches included.",
+        ],
+    },
+    {
+        id: 2,
+        title: "Beard Trim",
+        image: "assets/images/feature-4.jpeg",
+        alt: "Beard Trim",
+        description: "Sharp and line-up, and refine your beard for a clean finish.",
+        price: 15,
+        popular: false,
+        details: [
+            "beard assessment and shaping based on face structure.",
+            "line-up around cheeks, jawline, and neckline.",
+            "trimmers and details tools used for crisp edges.",
+            "conditioning beard product maybe apploed for softness.",
+            "Final symmetry check for a polished finish.",
+        ],
+    },
+    {
+        id: 3,
+        title: "Straight Razor Shave",
+        image: "assets/images/feature-3.jpg",
+         alt: "Straight Razor Shave",
+         description: "Hot towel, smooth shave, and classic barbershop experience.",
+         price: 30,
+         details: [
+            "Hot towel prep to soften facial hair and open pores.",
+            "Premium shaving cream or lather applies to protect your skin.",
+            "Straight razor shave performed with careful detailing.",
+            "Second hot towel maybe used for comfort and cleanup.",
+            "Af,tershave or soothing skin product applied after service.",
+         ]
+    },
+    {
+        id: 4,
+        title: "Fade & Style",
+        image: "assets/images/feature-2.jpg",
+         alt: "Fade Haircut",
+         Description: " A clean fade with finishing deatil for a sharp, modern look.",
+         price: 35,
+         popular: false,
+         detsils: [
+            "Style consultation before clippers begins",
+            "fade blended to your preferred level and finish",
+            "detailing around temples, neckline, and beard area if needed",
+            "Scissors and clipper-over-comb maybe used for TextTrackCue.",
+            "Styling product added to complet the final look.",
+         ],
+    },
+    {
+        id: 5,
+        title: "Kids Cut",
+        image: "assets/images/feature-1.jpg",
+        alt: "Kids Haircut",
+        description: "clean, comfortabel haircut servoce for younger clients.",
+        price: 20,
+        popular: false,
+        details: [
+            "simple consultation with child and parent if needed.",
+            "Age appropriate haircuts with comfort in mind.",
+            "careful clipper and scissors work for a clean finish",
+            "light cleanup around the neckline and ear.",
+            "Styles neatly before leaving thr chair.",
+        ],
+    },
+    {
+        id: 6,
+        title: "Head Shave",
+        image: "assets/images/feature-3.jpg",
+         alt: "Kids Head Shave",
+          description: "Smooth head shave with classic barbershop treatment",
+          price: 28,
+          popular: true,
+          details: [
+            "Scalp prep with warm towel treatment.",
+            "Protective shavev product applies before razor work.",
+            "Close shave performed for a smooth finish.",
+            "Scalp cleaned and checked for even consistency.",
+            "Moisturizing scalp product applied after the shave.",
+          ],
+    },
 ];
+// -------  Sevices Data (Array of Objects) --------
+
+// const services = [
+//     {
+//     title: "Classic Haircuts", 
+//     text: "Timeless cuts with mordern precisiontailired to your style.",
+//     image: "assets/images/feature-1.jpg"
+// },
+// {
+//     title: "Beard Trim",
+//     text: "Sharp and line-up your beard for a clean, sharp finish.",
+//     image: "assets/images/feature-2.jpg",
+// },
+//     {title: "straight Razor Shave",
+//     text: "Hot towel treatment with a smooth traditional shave.",
+//     image: "assets/images/feature-3.jpg"
+// },
+// ];
+
 
 const navLinks = [
     {label: "Home", href:"#hero"},
@@ -118,7 +223,7 @@ const handleHeaderOnScroll = () => {
     if(window.scrollY >10) {
         siteHeader.classList.add("is-scrolled")
     } else {
-        siteHeader.classList.remove("is scrolled");
+        siteHeader.classList.remove("is-scrolled");
     }
 };
 

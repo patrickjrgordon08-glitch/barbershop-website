@@ -6,6 +6,7 @@
     <title>Vintage Barbershop</title>
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="CSS/calender.css" />
   </head>
   <body>
     <!-- ====== Header / Navbar ===== -->
@@ -104,9 +105,9 @@
         <div class="booking-panel">
           <h3 class="booking-panel-title">Book Your Appointment</h3>
 
-          <p class="select-date-text">
+          <p class="selected-date-text">
             Select Date:
-            <span id="selectDateText">Choose A Date</span>
+            <span id="selectedDateText">Choose A Date</span>
           </p>
 
           <div class="time-slots" id="timeSlots"></div>
@@ -134,7 +135,7 @@
               </select>
             </div>
 
-            <input type="hidden" id="selectTimeInput" />
+            <input type="hidden" id="selectedTimeInput" />
 
             <button type="submit" class="btn btn-primary booking-submit-btn">
               Confirm booking
@@ -187,6 +188,28 @@
         </p>
       </div>
     </footer>
+
+    <!-- Service Details Model ---->
+    <div class="service-modal" id="serviceModal" aria-hidden="true">
+        <div class="service-modal-overlay" id="serviceModalOverlay"></div>
+        <div
+        class="service-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="serviceModalTitle"
+        >
+        <button 
+        class="service-modal-close"
+        id="serviceModalClose"
+        aria-label="close modal"
+        >
+    x
+</button>
+<h3 id="serviceModalTitle">Service Detail</h3>
+<p id="serviceModalPrice" class="service-modal-price"></p>
+<ul id="seviceModalList" class="service-modal-list"></ul>
+</div>
+    </div>
     <!-- JS -->
     <script src="js/main.js"></script>
     <script src="js/calender.js"></script>
