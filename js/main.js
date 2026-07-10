@@ -26,10 +26,10 @@ const serviceModalList = document.getElementById("serviceModalList");
 const services = [
     {
         id: 1,
-        title: "classic haircuts",
+        title: "Classic Haircuts",
         image: "assets/images/feature-1.jpg",
-        alt: "Classice Haircuts",
-        description:"Timeless cuts with modern precision-tailores to your style.",
+        alt: "Classic Haircuts",
+        description:"Timeless cuts with modern precision-tailors to your style.",
         price:25,popular: true,
         detals: [
             "Consultation woith your barber before cut begins.",
@@ -88,9 +88,9 @@ const services = [
     {
         id: 5,
         title: "Kids Cut",
-        image: "assets/images/feature-1.jpg",
+        image: "assets/images/feature-6.jpg",
         alt: "Kids Haircut",
-        description: "clean, comfortabel haircut servoce for younger clients.",
+        description: "clean, comfortable haircut service for younger clients.",
         price: 20,
         popular: false,
         details: [
@@ -104,7 +104,7 @@ const services = [
     {
         id: 6,
         title: "Head Shave",
-        image: "assets/images/feature-3.jpg",
+        image: "assets/images/feature-5.jpg",
          alt: "Kids Head Shave",
           description: "Smooth head shave with classic barbershop treatment",
           price: 28,
@@ -145,35 +145,98 @@ const navLinks = [
     {label: "Contact", href: "#footer"}
 ];
 
+// Render Functions -----
+// Builds the desktop and mobile nav menu links from the navlinks array.
+//so links live i one data source instead of being duplicated in HTML.
+const renderNavigation = () => {
+    if (nav) {
+        const navHTML = navLinks
+        .map(
+            (link) => `<a href="${link.href}" class="nav-link">${link.label}</a>`,
+        )
+        .join("");
+        nav.innerHTML = navHTML;
+    }
+    if (mobileMenu) {
+        const mobileHTML = navLinks
+        .map(
+            (link) => 
+                    `<a href="${link.href}" class="mobile-link">${link.label}</a>`,
+        )
+            .join("");
+            mobileMenu.innerHTML = mobileHTML;
+            } 
+        };
+
+// Build the service cards (image title price badge "view details" button)
+// from the services array and injects them into the feature grid
+const renderServices = ()=> {
+    if (!featureGrid) return;
+    const serviceHTML = services.map((service) => {
+        let badgeHTML = "";
+        if (service.popular) {
+        badgeHTML =`<p class="service-badge"Popular Choice</p>`;
+    }else { 
+        badgeHTML = `<p class= service-badge alt-badge">barber favorite</p>`;
+    }
+    return `
+    <article class="feature-card">
+    <img
+    src="${service.images}"
+    alt=${service.alt}"
+    class="feature-img"
+    />
+    <h3 class="feature-title">${service.title}</h3>
+    <p class="feature-text">${service.description}</p>
+    ${badgeHTML}
+    <p class="service-actions">
+    <button
+    <p class="service-price">$${service.price}</p>
+    <div class"service-action"
+>
+<button
+class"service-details-btn"
+type="button"
+data-service-id="${service.id}"
+>
+view details
+</buttons>
+</div>
+</article>
+`;
+ })
+ .join("");
+ featureGrid.innerHTML = servicesHTML;
+};
 
 // --- render Navigation using map methods
-const renderNavigation = () => {
-    //Deskstop Nav
-    if (nav) {
-        const navHTML = navLinks.map(link => {
-            return `
-            <a href="${link.href}" class="nav-link">
-            ${link.label}
-            </a>
-            `;
-        }).join("");
-        nav.innerHTML = navHTML;
-    };
+// // const renderNavigation = () => {
+// //     //Deskstop Nav
+// //     if (nav) {
+// //         const navHTML = navLinks.map(link => {
+// //             return `
+//             <a href="${link.href}" class="nav-link">
+//             ${link.label}
+//             </a>
+//             `;
+//         }).join("");
+//         nav.innerHTML = navHTML;
+//     };
 
-    //Mobile Nav
-if (mobileMenu) {
-    const mobileHTML = navLinks.map(link => {
-    return `
-    <a href="${link.href}" class="mobile-link">
-    ${link.label}
-    </a>
-    `;
+//     //Mobile Nav
+// if (mobileMenu) {
+//     const mobileHTML = navLinks.map(link => {
+//     return `
+//     <a href="${link.href}" class="mobile-link">
+//     ${link.label}
+//     </a>
+//     `;
 
-    }).join("");
+//     }).join("");
 
-    mobileMenu.innerHTML = mobileHTML
-};
-};
+// //     mobileMenu.innerHTML = mobileHTML
+// // };
+// // };
 
 
 
@@ -210,7 +273,9 @@ const renderFeaturesMap = () => {
     featureGrid.innerHTML = cardsHTML;
 };
 
-// ----- helpers / Functions -----
+// ----- Helpers / Functions -----
+
+
 //UPDATE FOOTER YEAR AUTOMATICALLY
 const setCurrentYear = () => {
     const now = new Date();
@@ -252,6 +317,39 @@ const updateHeadingText = (newText) => {
     if (!heading) return;
     heading.textContent = newText;
 };
+
+// ---- Modal Logic ----
+
+// Finds the service matching serviceId, fills the modal with its title/price/details,
+// then open the modal and lock page scroll while its showing.
+const openServiceModal = (serviceId) => {
+    if (
+        !serviceModal ||
+        !serviceModalTitle ||
+        !serviceModalPrice ||
+        !serviceModalList
+    )
+    return;
+    const seelectedService = services.find(
+        (service) => service.id === Number(serviceId),
+    );
+    if (!seelectedService) return;
+    serviceModalTitle.textContent = seelectedService.title;
+    serviceModalTitle.textContent = `$${seelectedService.price}`;
+    serviceModalList.innerHTML = seelectedService.details
+    .map((details) => `<li>${detail}</li>`)
+    .join("");
+    serviceModal.classList.add("is-open");
+    serviceModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+};
+ // Hides the service modal and restores normal pad=ge scrolling.
+ const closeServiceModal = () => {
+    if (!serviceModal) return;
+    serviceModal.classList.remove("is-open");
+    serviceModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow="";
+ }; 
 
 // ----- Event Listener -----
 
@@ -298,4 +396,3 @@ if (callBtn) {
             }
         });
     }
-
