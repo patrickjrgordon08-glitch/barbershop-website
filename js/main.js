@@ -189,18 +189,15 @@ const renderServices = ()=> {
     <h3 class="feature-title">${service.title}</h3>
     <p class="feature-text">${service.description}</p>
     ${badgeHTML}
-    <p class="service-actions">
-    <button
     <p class="service-price">$${service.price}</p>
-    <div class"service-action"
->
+    <div class"service-action">
 <button
 class"service-details-btn"
 type="button"
 data-service-id="${service.id}"
 >
 view details
-</buttons>
+</button>
 </div>
 </article>
 `;
